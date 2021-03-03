@@ -5,24 +5,37 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-app.get('/',function(req,res){
+app.use(bodyParser.urlencoded({extended:true}));
+
+var items = [];
+
+app.get('/', function(req, res) {
   var today = new Date();
   var currentDay = today.getDay();
 
-  var day = "";
+  var options = {
+    weekday: "long",
+    day: "numeric",
+    month: "long"
+  };
+  var day = today.toLocaleDateString("en-US", options);
 
-  if(currentDay === 0 || currentDay === 6){
-    day = "Free";
-  }else {
-    day = "Working";
-  }
-
-  res.render("list",{typeOfDay:day});
+  res.render("list", {
+    typeOfDay: day,
+    newListItem : items
+  });
 
 });
 
+app.post('/',function(req,res){
+  console.log("Post request is made");
+   var item = req.body.newItem;
+   items.push(item);
 
+  res.redirect('/');
 
-app.listen(3000,function(){
+});
+
+app.listen(3000, function() {
   console.log("App now up and running at 3000");
 });

@@ -6,8 +6,22 @@
   </head>
   <body>
 
-    <h1>It's a <%=typeOfDay %> Day! </h1>
-    <p>Let's get to work</p>
+    <h1>Its a <%=typeOfDay %> </h1>
+
+
+    <ul>
+    <li>Buy Food</li>
+    <li>Cook Food</li>
+    <li>Eat Food</li>
+    <% for (item in newListItem){ %>
+    <li> <%= newListItem[item] %> </li>
+    <% } %>
+    </ul>
+
+    <form  action="/" method="post">
+      <input type="text" name="newItem" value="" placeholder="Add new task">
+      <button type="submit" name="button">Add</button>
+    </form>
 
   </body>
 </html>
