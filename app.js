@@ -1,24 +1,33 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+//const popupS = require('popups');
+
+
 
 const app = express();
+
 
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended:true}));
 
-var items = [];
+app.use(express.static("public"));
+
+let items = [];
 
 app.get('/', function(req, res) {
-  var today = new Date();
-  var currentDay = today.getDay();
+  let today = new Date();
+  let currentDay = today.getDay();
 
-  var options = {
+  // let alert = require('alert');
+  // alert("message");
+
+  let options = {
     weekday: "long",
     day: "numeric",
     month: "long"
   };
-  var day = today.toLocaleDateString("en-US", options);
+  let day = today.toLocaleDateString("en-US", options);
 
   res.render("list", {
     typeOfDay: day,
@@ -29,10 +38,11 @@ app.get('/', function(req, res) {
 
 app.post('/',function(req,res){
   console.log("Post request is made");
-   var item = req.body.newItem;
-   items.push(item);
+   let item = req.body.newItem;
+   if (item) {
+     items.push(item);
+   } res.redirect('/');
 
-  res.redirect('/');
 
 });
 
