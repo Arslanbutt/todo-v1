@@ -1,22 +1,22 @@
 <%- include("header") -%>
 
-    <div class="box" id="heading">
-    <h1>Its a <%=typeOfDay %> </h1>
-    </div>
+<div class="box" id="heading">
+  <h1>Its a <%=typeOfDay %> </h1>
+</div>
 
 
-    <div class="box">
-      <% for (item in newListItem){ %>
-        <div class="item">
-          <input type="checkbox" name="" value="">
-          <p> <%= newListItem[item] %> </p>
-        </div>
-      <% } %>
+<div class="box">
+  <% for (item in newListItem){ %>
+  <div class="item">
+    <input type="checkbox" name="" value="">
+    <p> <%= newListItem[item] %> </p>
+  </div>
+  <% } %>
 
-      <form  action="/" method="post" class="item">
-        <input type="text" name="newItem" value="" placeholder="Add new task" autocomplete="off">
-        <button type="submit" name="button" class="add">+</button>
-      </form>
-    </div>
+  <form action="/" method="post" class="item">
+    <input type="text" name="newItem" value="" placeholder="Add new task" autocomplete="off">
+    <button type="submit" name="button" class="add">+</button>
+  </form>
+</div>
 
 <%- include ("footer") -%>
